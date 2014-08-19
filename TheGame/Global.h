@@ -42,6 +42,35 @@ BOOL ShowConsoleCursor(BOOL bShow)
 	return true;
 }
 
+void consoleConfig()
+{
+	SetConsoleTitle(L"TheRogueLike");
+
+	// set font and font size
+	CONSOLE_FONT_INFOEX ConsoleFont = { sizeof(CONSOLE_FONT_INFOEX) };
+	GetCurrentConsoleFontEx(hConsole, false, &ConsoleFont);
+
+	wcscpy(ConsoleFont.FaceName, L"Raster Fonts");
+	// wcscpy(ConsoleFont.FaceName, L"Точечные шрифты");
+	SetCurrentConsoleFontEx(hConsole, false, &ConsoleFont);
+
+	ConsoleFont = { sizeof(CONSOLE_FONT_INFOEX) };
+	ConsoleFont.dwFontSize.X = 8;
+	ConsoleFont.dwFontSize.Y = 9;
+	SetCurrentConsoleFontEx(hConsole, false, &ConsoleFont);
+
+	// set console size and buffer
+	GetConsoleScreenBufferInfo(hConsole, &csbi);
+	COORD size = { 150, 50 };
+	SMALL_RECT src = { 0, 0, size.X - 1, size.Y - 1 };
+
+	SetConsoleScreenBufferSize(hConsole, size);
+	SetConsoleWindowInfo(hConsole, true, &src);
+
+	// hide cursor
+	ShowConsoleCursor(FALSE);
+}
+
 void drawGameName()
 {
 	GetConsoleScreenBufferInfo(hConsole, &csbi);
@@ -239,29 +268,4 @@ void drawTextXY(int xPos, int yPos, string txt, int pause)
 		cout << txt[i];
 	}
 	cout << endl;
-}
-
-void consoleConfig()
-{
-	SetConsoleTitle(L"TheRogueLike");
-
-	// set font and font size
-	CONSOLE_FONT_INFOEX ConsoleFont = { sizeof(CONSOLE_FONT_INFOEX) };
-	GetCurrentConsoleFontEx(hConsole, NULL, &ConsoleFont);
-
-	wcscpy(ConsoleFont.FaceName, L"Raster Fonts");
-	SetCurrentConsoleFontEx(hConsole, NULL, &ConsoleFont);
-
-	ConsoleFont.dwFontSize.X = 8;
-	ConsoleFont.dwFontSize.Y = 9;
-	SetCurrentConsoleFontEx(hConsole, NULL, &ConsoleFont);
-
-	// set console size and buffer
-	COORD crd = { 150, 50 };
-	SMALL_RECT src = { 0, 0, crd.X - 1, crd.Y - 1 };
-	SetConsoleWindowInfo(hConsole, true, &src);
-	SetConsoleScreenBufferSize(hConsole, crd);
-
-	// hide cursor
-	ShowConsoleCursor(FALSE);
 }

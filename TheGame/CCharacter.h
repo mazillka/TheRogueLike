@@ -7,6 +7,7 @@ class CCharacter
 {
 	COORD charPosition;
 	string charClass;
+	string charName;
 	int lives;
 	int keys;
 
@@ -16,16 +17,18 @@ class CCharacter
 public:
 	CCharacter() {}
 
-	CCharacter(string _charClass, int _lives, int _keys)
+	CCharacter(string _charClass, string _charName, int _lives, int _keys)
 	{
 		// last door for test
-		 //charPosition.X = 23;
-		 //charPosition.Y = 72;
+		//charPosition.X = 23;
+		//charPosition.Y = 72;
 
 		charPosition.X = 1;
 		charPosition.Y = 1;
 
 		charClass = _charClass;
+
+		charName = _charName;
 
 		lives = _lives;
 
@@ -43,6 +46,11 @@ public:
 	string getCharClass()
 	{
 		return charClass;
+	}
+
+	string getCharName()
+	{
+		return charName;
 	}
 
 	int getLives()
@@ -81,16 +89,16 @@ private:
 		int dice = rand() % 10;
 		int number, attempt = 0;
 		clear();
-		drawTextXY(1, 20, "You found locked door.", 50);
+		drawTextXY(1, 21, "You found locked door.", 50);
 		if (keys > 0)
 		{
-			drawTextXY(1, 21, "And opened it with key.", 50);
+			drawTextXY(1, 22, "And opened it with key.", 50);
 			keys -= 1;
 			return true;
 		}
 		else
 		{
-			drawTextXY(1, 21, "In order to pass you must\n pick up number combination.\n", 50);
+			drawTextXY(1, 22, "In order to pass you must\n pick up number combination \n from 0 to 9: \n\n", 50);
 
 			while (attempt != 3)
 			{
@@ -116,29 +124,36 @@ private:
 		int dice = rand() % 3;
 		char buffer[2];
 		_itoa(dice, buffer, 10);
-		drawTextXY(1, 20, "you found " + (string)buffer + " lives", 50);
+		drawTextXY(1, 21, "you found " + (string)buffer + " lives", 50);
 		setLives(dice);
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	bool Fight()
+	{
+
+
+
+		return false;
+	}
+
+	void reload(CUnit* unit)
+	{
+		if (unit->getType() == 'S')
+			unit->setHp(15);
+		if (unit->getType() == 'A')
+			unit->setHp(12);
+		if (unit->getType() == 'W')
+			unit->setHp(8);
+	}
+
 	bool doAttack(CUnit* player, CUnit* enemy)
 	{
 		GetConsoleScreenBufferInfo(hConsole, &csbi);
 
-		if (player->getType() == 'S')
-			player->setHp(15);
-		if (player->getType() == 'A')
-			player->setHp(12);
-		if (player->getType() == 'W')
-			player->setHp(8);
-		///
-		if (enemy->getType() == 'S')
-			enemy->setHp(15);
-		if (enemy->getType() == 'A')
-			enemy->setHp(12);
-		if (enemy->getType() == 'W')
-			enemy->setHp(8);
+		reload(player);
+		reload(enemy);
 
 		while (true)
 		{
@@ -325,6 +340,7 @@ private:
 		SetConsoleTextAttribute(hConsole, csbi.wAttributes);
 	}
 
+//
 	bool isDodged(int dodge)
 	{
 		if ((rand() % 100) < dodge)
@@ -332,7 +348,7 @@ private:
 		else
 			return false;
 	}
-
+//
 	bool Enemy()
 	{
 		switch (rand() % 3)
@@ -385,7 +401,7 @@ public:
 				else
 				{
 					clear();
-					drawTextXY(1, 20, "door closed!", 50);
+					drawTextXY(1, 21, "door closed!", 50);
 				}
 			}
 
@@ -399,24 +415,24 @@ public:
 			{
 				if (Enemy() == true)
 				{
-					drawTextXY(1, 20, "you win!", 50);
+					drawTextXY(1, 21, "you win!", 50);
 					int dice = rand() % 2;
 					if (dice > 0)
 					{
-						drawTextXY(1, 21, "and found 1 key \n at enemy's pockets.", 50);
+						drawTextXY(1, 22, "and found 1 key \n at enemy's pockets.", 50);
 						keys += 1;
 					}
 					else
 					{
-						drawTextXY(1, 21, "and nothing were found.", 50);
+						drawTextXY(1, 22, "and nothing were found.", 50);
 					}
 					charPosition.X--;
 				}
 				else
 				{
 					clear();
-					drawTextXY(1, 20, "you lose!", 50);
-					drawTextXY(1, 21, "and lost 1 life", 50);
+					drawTextXY(1, 21, "you lose!", 50);
+					drawTextXY(1, 22, "and lost 1 life", 50);
 					lives -= 1;
 				}
 			}
@@ -439,7 +455,7 @@ public:
 				else
 				{
 					clear();
-					drawTextXY(1, 20, "door closed!", 50);
+					drawTextXY(1, 21, "door closed!", 50);
 				}
 			}
 
@@ -453,24 +469,24 @@ public:
 			{
 				if (Enemy() == true)
 				{
-					drawTextXY(1, 20, "you win!", 50);
+					drawTextXY(1, 21, "you win!", 50);
 					int dice = rand() % 2;
 					if (dice > 0)
 					{
-						drawTextXY(1, 21, "and found 1 key \n at enemy's pockets.", 50);
+						drawTextXY(1, 22, "and found 1 key \n at enemy's pockets.", 50);
 						keys += 1;
 					}
 					else
 					{
-						drawTextXY(1, 21, "and nothing were found.", 50);
+						drawTextXY(1, 22, "and nothing were found.", 50);
 					}
 					charPosition.Y--;
 				}
 				else
 				{
 					clear();
-					drawTextXY(1, 20, "you lose!", 50);
-					drawTextXY(1, 21, "and lost 1 life", 50);
+					drawTextXY(1, 21, "you lose!", 50);
+					drawTextXY(1, 22, "and lost 1 life", 50);
 					lives -= 1;
 				}
 			}
@@ -493,7 +509,7 @@ public:
 				else
 				{
 					clear();
-					drawTextXY(1, 20, "door closed!", 50);
+					drawTextXY(1, 21, "door closed!", 50);
 				}
 			}
 
@@ -507,24 +523,24 @@ public:
 			{
 				if (Enemy() == true)
 				{
-					drawTextXY(1, 20, "you win!", 50);
+					drawTextXY(1, 21, "you win!", 50);
 					int dice = rand() % 2;
 					if (dice > 0)
 					{
-						drawTextXY(1, 21, "and found 1 key \n at enemy's pockets.", 50);
+						drawTextXY(1, 22, "and found 1 key \n at enemy's pockets.", 50);
 						keys += 1;
 					}
 					else
 					{
-						drawTextXY(1, 21, "and nothing were found.", 50);
+						drawTextXY(1, 22, "and nothing were found.", 50);
 					}
 					charPosition.X++;
 				}
 				else
 				{
 					clear();
-					drawTextXY(1, 20, "you lose!", 50);
-					drawTextXY(1, 21, "and lost 1 life", 50);
+					drawTextXY(1, 21, "you lose!", 50);
+					drawTextXY(1, 22, "and lost 1 life", 50);
 					lives -= 1;
 				}
 			}
@@ -547,7 +563,7 @@ public:
 				else
 				{
 					clear();
-					drawTextXY(1, 20, "door closed!", 50);
+					drawTextXY(1, 21, "door closed!", 50);
 				}
 			}
 
@@ -561,24 +577,24 @@ public:
 			{
 				if (Enemy() == true)
 				{
-					drawTextXY(1, 20, "you win!", 50);
+					drawTextXY(1, 21, "you win!", 50);
 					int dice = rand() % 2;
 					if (dice > 0)
 					{
-						drawTextXY(1, 21, "and found 1 key \n at enemy's pockets.", 50);
+						drawTextXY(1, 22, "and found 1 key \n at enemy's pockets.", 50);
 						keys += 1;
 					}
 					else
 					{
-						drawTextXY(1, 21, "and nothing were found.", 50);
+						drawTextXY(1, 22, "and nothing were found.", 50);
 					}
 					charPosition.Y++;
 				}
 				else
 				{
 					clear();
-					drawTextXY(1, 20, "you lose!", 50);
-					drawTextXY(1, 21, "and lost 1 life", 50);
+					drawTextXY(1, 21, "you lose!", 50);
+					drawTextXY(1, 22, "and lost 1 life", 50);
 					lives -= 1;
 				}
 			}

@@ -8,12 +8,19 @@ public:
 
 	void newGame()
 	{
-		system("cls");
-		drawGameName();
+		for (int line = 13; line < 16; line++)
+		{
+			drawTextXY(70, line, "         ", 0);
+		}
 
-		int iItem = 1;
-		int nLast = 3;
+		int iItem = 1, nLast = 3;
 		char symb;
+		string name;
+
+		drawTextXY(60, 12, "input your name: ", 30);
+		cin >> name;
+
+		drawTextXY(60, 14, "choice your class: ", 0);
 
 		ShowMenu(iItem);
 		while (true)
@@ -53,17 +60,17 @@ public:
 				{
 				case 1:
 					cin.ignore();
-					character = CCharacter("Archer", LIVES, KEYS);
+					character = CCharacter("Archer", name, LIVES, KEYS);
 					playGame();
 					break;
 				case 2:
 					cin.ignore();
-					character = CCharacter("Swordsmen", LIVES, KEYS);
+					character = CCharacter("Swordsmen", name, LIVES, KEYS);
 					playGame();
 					break;
 				case 3:
 					cin.ignore();
-					character = CCharacter("Wizard", LIVES, KEYS);
+					character = CCharacter("Wizard", name, LIVES, KEYS);
 					playGame();
 					break;
 				}
@@ -74,19 +81,14 @@ public:
 private:
 	void ShowMenu(int iItem)
 	{
-		drawTextXY(60, 14, "                                            ", 0);
+		drawTextXY(78, 14, "           ", 0);
 
 		GetConsoleScreenBufferInfo(hConsole, &csbi);
 
-		// archer
-		scrn.X = 60;
-		scrn.Y = 14;
-		SetConsoleCursorPosition(hConsole, scrn);
-		cout << "choice your class:";
 		if (iItem == 1)
 		{
 			SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-			cout << " Archer!" << endl;
+			drawTextXY(79, 14, "Archer!", 0);
 			scrn.X = 41;
 			scrn.Y = 17;
 			SetConsoleCursorPosition(hConsole, scrn);
@@ -103,15 +105,10 @@ private:
 			choiceInfo("Archer", 12, 4, 40, 45);
 		}
 
-		// swordsmen
-		scrn.X = 60;
-		scrn.Y = 14;
-		SetConsoleCursorPosition(hConsole, scrn);
-		cout << "choice your class:";
 		if (iItem == 2)
 		{
 			SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-			cout << " Swordsmen!" << endl;
+			drawTextXY(79, 14, "Swordsmen!", 0);
 			scrn.X = 64;
 			scrn.Y = 17;
 			SetConsoleCursorPosition(hConsole, scrn);
@@ -121,22 +118,17 @@ private:
 		}
 		else
 		{
-			scrn.X = 64;
+			scrn.X = 78;
 			scrn.Y = 17;
 			SetConsoleCursorPosition(hConsole, scrn);
 			choiceForm(65);
 			choiceInfo("Swordsmen", 15, 5, 60, 68);
 		}
 
-		// wizard
-		scrn.X = 60;
-		scrn.Y = 14;
-		SetConsoleCursorPosition(hConsole, scrn);
-		cout << "choice your class:";
 		if (iItem == 3)
 		{
 			SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-			cout << " Wizard!" << endl;
+			drawTextXY(79, 14, "Wizard!", 0);
 			scrn.X = 87;
 			scrn.Y = 17;
 			SetConsoleCursorPosition(hConsole, scrn);
@@ -226,6 +218,9 @@ private:
 		cout << (char)442 << "                   " << (char)442 << endl;
 		scrn.Y = yPos++;
 		SetConsoleCursorPosition(hConsole, scrn);
+		cout << (char)442 << "                   " << (char)442 << endl;
+		scrn.Y = yPos++;
+		SetConsoleCursorPosition(hConsole, scrn);
 		cout << (char)456 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)444 << endl;
 	}
 
@@ -233,6 +228,9 @@ private:
 	{
 		int yPos = 14;
 		scrn.X = xPos;
+		scrn.Y = yPos++;
+		SetConsoleCursorPosition(hConsole, scrn);
+		cout << "  " << character.getCharName() << endl;
 		scrn.Y = yPos++;
 		SetConsoleCursorPosition(hConsole, scrn);
 		cout << "Class: " << character.getCharClass() << endl;

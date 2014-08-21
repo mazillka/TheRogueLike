@@ -6,10 +6,10 @@
 
 void ShowMenu(int iItem)
 {
-	drawTextXY(50, 20, "                                            ", 0);
+	drawTextXY(42, 20, "                                                                        ", 0);
 	drawTextXY(42, 21, "                                                                        ", 0);
 
-	drawTextXY(50, 47, "                                      ", 0);
+	drawTextXY(50, 47, "                                                 ", 0);
 	drawTextXY(50, 48, "                                                 ", 0);
 
 	int yPos = 13;

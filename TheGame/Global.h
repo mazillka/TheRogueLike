@@ -14,9 +14,9 @@ const int Height = 75;
 bool isWin = FALSE;
 
 // default number of lives
-#define LIVES 5 // 5
+#define LIVES 1 // 5
 // default number of keys
-#define KEYS 1 //  1
+#define KEYS 0 //  0
 
 ///
 COORD scrn;
@@ -71,7 +71,7 @@ void consoleConfig()
 	ShowConsoleCursor(FALSE);
 
 	// console position
-	SetWindowPos(FindWindow(NULL, L"TheRogueLike"), HWND_TOPMOST, 30, 30, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE | SWP_SHOWWINDOW);
+	SetWindowPos(FindWindow(NULL, L"TheRogueLike"), HWND_TOPMOST, 30, 30, 0, 0, SWP_NOSIZE | SWP_SHOWWINDOW);
 }
 
 int Labyrinth[Width][Height] =
@@ -169,5 +169,4 @@ void drawTextXY(int xPos, int yPos, string txt, int pause)
 		Sleep(pause);
 		cout << txt[i];
 	}
-	cout << endl;
 }

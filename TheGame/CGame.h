@@ -281,12 +281,12 @@ private:
 		}
 		if (character.getLives() <= 0)
 		{
-			drawGameOver();
+			drawGameOverMessage();
 		}
 
 		if (isWin == true)
 		{
-			drawWin();
+			drawYouWinMessage();
 		}
 	}
 

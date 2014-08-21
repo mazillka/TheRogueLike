@@ -19,8 +19,8 @@ public:
 	CCharacter(string _charClass, int _lives, int _keys)
 	{
 		// last door for test
-		// charPosition.X = 23;
-		// charPosition.Y = 72;
+		 //charPosition.X = 23;
+		 //charPosition.Y = 72;
 
 		charPosition.X = 1;
 		charPosition.Y = 1;

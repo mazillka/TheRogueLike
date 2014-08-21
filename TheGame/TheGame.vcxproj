@@ -85,6 +85,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Banners.h" />
     <ClInclude Include="CArcher.h" />
     <ClInclude Include="CCharacter.h" />
     <ClInclude Include="CGame.h" />

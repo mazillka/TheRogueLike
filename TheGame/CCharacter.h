@@ -40,7 +40,6 @@ public:
 			player = new CSwordsmen();
 		if (charClass == "Wizard")
 			player = new CWizard();
-
 	}
 
 	string getCharClass()

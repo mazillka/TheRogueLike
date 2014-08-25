@@ -1,6 +1,7 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 
 #include "Global.h"
+#include "Labyrinth.h"
 #include "Banners.h"
 #include "CGame.h"
 

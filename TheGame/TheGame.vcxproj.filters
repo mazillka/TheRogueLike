@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Character Classes">
+      <UniqueIdentifier>{55f99900-b2e3-4466-8d23-a4284d500820}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -26,22 +29,25 @@
     <ClInclude Include="CGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CArcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CSwordsmen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CUnit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CWizard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Banners.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CArcher.h">
+      <Filter>Header Files\Character Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CUnit.h">
+      <Filter>Header Files\Character Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CWizard.h">
+      <Filter>Header Files\Character Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CSwordsmen.h">
+      <Filter>Header Files\Character Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Labyrinth.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

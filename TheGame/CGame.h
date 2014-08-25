@@ -148,32 +148,84 @@ private:
 
 	void choiceForm(int xPos)
 	{
-		int yPos = 16;
+		int Width = 8;
+		int Height = 21;
+
+		int yPos = 15;
 		scrn.X = xPos;
 		scrn.Y = yPos++;
 		SetConsoleCursorPosition(hConsole, scrn);
-		cout << (char)457 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)443 << endl;
+		for (int i = 0; i < Width; i++)
+		{
+			scrn.Y = yPos++;
+			SetConsoleCursorPosition(hConsole, scrn);
+			for (int j = 0; j < Height; j++)
+			{
+				// left corner
+				if (i == 0 && j == 0)
+				{
+					cout << (char)457;
+				}
+
+				// upper line
+				if (i == 0 && j < Height - 2)
+				{
+					cout << (char)461;
+				}
+
+				// right corner
+				if (i == 0 && j == Height - 1)
+				{
+					cout << (char)443;
+				}
+
+				// left line
+				if (i > 0 && i < Width - 1 && j == 0)
+				{
+					cout << (char)442;
+				}
+
+				//// TODO: rework using SetConsoleCursorPosition
+				// see line 245
+				//// right line
+				//if (i > 0 && i < Width - 1 && j == Height - 1)
+				//{
+				//	cout << (char)442;
+				//}
+
+				// left corner
+				if (i == Width - 1 && j == 0)
+				{
+					cout << (char)456;
+				}
+
+				// bottom line
+				if (i == Width - 1 && j < Height - 2)
+				{
+					cout << (char)461;
+				}
+
+				// right corner
+				if (i == Width - 1 && j == Height - 1)
+				{
+					cout << (char)444;
+				}
+
+			}
+			cout << endl;
+		}
+
+		// right line
+		yPos = 16;
+		scrn.X = xPos + Height - 1;
 		scrn.Y = yPos++;
 		SetConsoleCursorPosition(hConsole, scrn);
-		cout << (char)442 << "                   " << (char)442 << endl;
-		scrn.Y = yPos++;
-		SetConsoleCursorPosition(hConsole, scrn);
-		cout << (char)442 << "                   " << (char)442 << endl;
-		scrn.Y = yPos++;
-		SetConsoleCursorPosition(hConsole, scrn);
-		cout << (char)442 << "                   " << (char)442 << endl;
-		scrn.Y = yPos++;
-		SetConsoleCursorPosition(hConsole, scrn);
-		cout << (char)442 << "                   " << (char)442 << endl;
-		scrn.Y = yPos++;
-		SetConsoleCursorPosition(hConsole, scrn);
-		cout << (char)442 << "                   " << (char)442 << endl;
-		scrn.Y = yPos++;
-		SetConsoleCursorPosition(hConsole, scrn);
-		cout << (char)442 << "                   " << (char)442 << endl;
-		scrn.Y = yPos++;
-		SetConsoleCursorPosition(hConsole, scrn);
-		cout << (char)456 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)461 << (char)444 << endl;
+		for (int i = 0; i < Width - 2; i++)
+		{
+			scrn.Y = yPos++;
+			SetConsoleCursorPosition(hConsole, scrn);
+			cout << (char)442;
+		}
 	}
 
 	void choiceInfo(string className, int hp, int dmg, int dodge, int xPos)

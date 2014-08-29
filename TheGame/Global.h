@@ -22,24 +22,6 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 CONSOLE_SCREEN_BUFFER_INFO csbi;
 ///
 
-BOOL ShowConsoleCursor(BOOL bShow)
-{
-	CONSOLE_CURSOR_INFO cci;
-
-	if (hConsole == INVALID_HANDLE_VALUE)
-		return TRUE;
-
-	if (!GetConsoleCursorInfo(hConsole, &cci))
-		return FALSE;
-
-	cci.bVisible = bShow;
-
-	if (!SetConsoleCursorInfo(hConsole, &cci))
-		return FALSE;
-
-	return TRUE;
-}
-
 void consoleConfig()
 {
 	SetConsoleTitle(L"TheRogueLike");
@@ -49,7 +31,6 @@ void consoleConfig()
 	GetCurrentConsoleFontEx(hConsole, FALSE, &ConsoleFont);
 
 	wcscpy(ConsoleFont.FaceName, L"Raster Fonts");
-	// wcscpy(ConsoleFont.FaceName, L"Точечные шрифты");
 	SetCurrentConsoleFontEx(hConsole, FALSE, &ConsoleFont);
 
 	ConsoleFont = { sizeof(CONSOLE_FONT_INFOEX) };
@@ -66,7 +47,8 @@ void consoleConfig()
 	SetConsoleWindowInfo(hConsole, TRUE, &src);
 
 	// hide cursor
-	ShowConsoleCursor(FALSE);
+	CONSOLE_CURSOR_INFO cci;
+	cci.bVisible = FALSE;
 
 	// console position
 	SetWindowPos(FindWindow(NULL, L"TheRogueLike"), HWND_TOPMOST, 30, 30, 0, 0, SWP_NOSIZE | SWP_SHOWWINDOW);

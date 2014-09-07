@@ -82,6 +82,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Banners.cpp" />
+    <ClCompile Include="CCharacter.cpp" />
+    <ClCompile Include="CGame.cpp" />
+    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -92,8 +96,7 @@
     <ClInclude Include="CSwordsmen.h" />
     <ClInclude Include="CUnit.h" />
     <ClInclude Include="CWizard.h" />
-    <ClInclude Include="Global.h" />
-    <ClInclude Include="Labyrinth.h" />
+    <ClInclude Include="Functions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

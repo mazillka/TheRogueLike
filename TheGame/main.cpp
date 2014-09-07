@@ -1,12 +1,13 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
-
-#include "Global.h"
-#include "Labyrinth.h"
+﻿#include <ctime>
 #include "Banners.h"
 #include "CGame.h"
 
 void ShowMenu(int iItem)
 {
+	COORD scrn;
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+
 	drawTextXY(42, 20, "                                                                        ", 0);
 	drawTextXY(42, 21, "                                                                        ", 0);
 
@@ -22,12 +23,12 @@ void ShowMenu(int iItem)
 	if (iItem == 1)
 	{
 		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		cout << ">" << "New Game" << endl;
+		std::cout << ">" << "New Game" << std::endl;
 		SetConsoleTextAttribute(hConsole, csbi.wAttributes);
 	}
 	else
 	{
-		cout << " " << "New Game" << endl;
+		std::cout << " " << "New Game" << std::endl;
 	}
 
 	scrn.Y = yPos++;
@@ -35,12 +36,12 @@ void ShowMenu(int iItem)
 	if (iItem == 2)
 	{
 		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		cout << ">" << "Rules" << endl;
+		std::cout << ">" << "Rules" << std::endl;
 		SetConsoleTextAttribute(hConsole, csbi.wAttributes);
 	}
 	else
 	{
-		cout << " " << "Rules" << endl;
+		std::cout << " " << "Rules" << std::endl;
 	}
 
 	scrn.Y = yPos++;
@@ -48,12 +49,12 @@ void ShowMenu(int iItem)
 	if (iItem == 3)
 	{
 		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		cout << ">" << "About" << endl;
+		std::cout << ">" << "About" << std::endl;
 		SetConsoleTextAttribute(hConsole, csbi.wAttributes);
 	}
 	else
 	{
-		cout << " " << "About" << endl;
+		std::cout << " " << "About" << std::endl;
 	}
 }
 
@@ -105,15 +106,15 @@ void main()
 			switch (iItem)
 			{
 			case 1:
-				cin.ignore();
+				std::cin.ignore();
 				game.newGame();
 				break;
 			case 2:
-				cin.ignore();
+				std::cin.ignore();
 				game.rulesInfo();
 				break;
 			case 3:
-				cin.ignore();
+				std::cin.ignore();
 				game.aboutInfo();
 				break;
 			}

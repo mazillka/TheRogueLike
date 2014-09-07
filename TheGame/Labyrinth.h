@@ -32,6 +32,10 @@ int Labyrinth[Width][Height] =
 
 void drawLabyrinth()
 {
+	COORD scrn;
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+
 	int yPos = 12;
 	for (int i = 0; i < Width; i++)
 	{

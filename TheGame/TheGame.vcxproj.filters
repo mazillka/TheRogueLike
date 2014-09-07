@@ -21,15 +21,24 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Banners.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CCharacter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Banners.h">
@@ -47,7 +56,7 @@
     <ClInclude Include="CSwordsmen.h">
       <Filter>Header Files\Character Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Labyrinth.h">
+    <ClInclude Include="Functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
